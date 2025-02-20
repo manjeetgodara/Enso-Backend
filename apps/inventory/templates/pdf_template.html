@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Rokkitt:wght@700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Proxima Nova:wght@400&display=swap"
+    />
+    <title>COST SHEET</title>
+    <style>
+      body {
+        font-family: Proxima Nova, sans-serif;
+        margin: 0;
+        padding: 20px 20px 20px 50px;
+        position: relative;
+        width: 21cm;
+        height: 29.7cm;
+      }
+      .headers {
+        font-family: Rokkitt, sans-serif;
+      }
+      .title {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .details {
+        margin-top: 60px;
+        margin-bottom: 20px;
+      }
+      .details p {
+        margin: 5px 0;
+      }
+      .details p strong {
+        font-weight: bold;
+      }
+      .details p span {
+        margin-left: 10px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+      .apartment-heading {
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+      th,
+      td {
+        border: 1px solid #000000;
+        text-align: left;
+        padding: 8px;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      .terms-list {
+        margin-bottom: 20px;
+      }
+      .terms-list p {
+        margin: 5px 0;
+      }
+      .image-left {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+      }
+      .image-right {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+      }
+      .signature-table {
+        border: 0px solid white;
+      }
+      .signatures {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+
+      .signature-container {
+        text-align: center;
+      }
+
+      .signature-note {
+        margin-top: 5px;
+      }
+
+      caption {
+        text-align: center;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <img class="image-left" src="{{ image_url }}" alt="Image Left" />
+    <img class="image-right" src="{{ image_url }}" alt="Image Right" />
+    <div class="title">COST SHEET</div>
+    <div class="details">
+      <p><strong>Date: </strong><span>{{ date }}</span></p>
+      <p><strong>Project Name: </strong><span>{{ project_name }}</span></p>
+      <p><strong>Location: </strong><span>{{ location }}</span></p>
+      <p>
+        <strong>Maha Rera & Website: </strong><span>{{ rera_website }}</span>
+      </p>
+      <p><strong>Head Office: </strong><span>{{ head_office }}</span></p>
+      <p><strong>Site Address: </strong><span>{{ site_address }}</span></p>
+      <p>
+        <strong>Agreement Value: </strong
+        ><span><span>&#8377;</span> {{ agreement_value }}</span>
+      </p>
+    </div>
+    <div class="details for ap">
+      <p class="apartment-heading headers">Apartment Details</p>
+      <br />
+      <p><strong>Project Name: </strong><span>{{ project_name }}</span></p>
+      <p>
+        <strong>Flat/Apartment/Unit: </strong><span>{{ apartment_no }}</span>
+      </p>
+      <p>
+        <strong>Configuration Of Apartment:</strong
+        ><span>{{ configuration }}</span>
+      </p>
+      <p><strong>Building:</strong><span>{{ building }}</span></p>
+      <p>
+        <strong>Liveable Floor in the Building:</strong
+        ><span>{{ floors }}</span>
+      </p>
+      <!-- <p><strong>No of Cars Parks:</strong><span>{{ car_parking }}</span></p> -->
+      <p>
+        <strong
+          >Carpet Area as per The Real Estate (Regulation and Development) Act,
+          2016 along with applicable rules:</strong
+        ><span>{{ area }}</span>
+      </p>
+    </div>
+    <table>
+      <caption>
+        Construction Linked Payment Schedule
+      </caption>
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Payment in %</th>
+          <th>Amount</th>
+          <th>GST (8%)</th>
+          <th>TDS (Customer to bear 1%)</th>
+          <th>Total Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cost_sheet_data %}
+        <tr>
+          <td>{{ item.event }}</td>
+          <td>{{ item.payment_in_percentage }}</td>
+          <td>{{ item.amount }}</td>
+          <td>{{ item.gst }}</td>
+          <td>{{ item.tds }}</td>
+          <td>{{ item.total_amount }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td>Total</td>
+          <td>{{ payment_in_percentage_sum }}</td>
+          <td>{{ amount_sum }}</td>
+          <td>{{ gst_sum }}</td>
+          <td>{{ tds_sum }}</td>
+          <td>{{ total_amount_sum }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="details" style="margin-top: 0%">
+      <p>GSTIN No: {{ gst }}</p>
+    </div>
+    <div class="title">Terms and Conditions</div>
+    <div class="terms-list">
+      <ol>
+        {% for term in terms_and_conditions %}
+        <li>{{ term }}</li>
+        {% endfor %}
+      </ol>
+    </div>
+    <table class="signature-table">
+      <tr class="signature-table">
+        <!-- <td class = "signature-table">
+               <div class="signature-container">
+
+                    {% if client_signature_url %}
+                        <img src="{{ client_signature_url }}" alt="Client Signature" width="150" height="50">
+                    {% else %}
+                        <div class="signature">____________________________</div>
+                    {% endif %}
+
+             
+                <div class="signature-note">
+                    (Client Signature)
+                </div>
+               
+            </div>
+        </td> -->
+
+        {% if client_signature_url %}
+        <td class="signature-table">
+          <div class="signature-container">
+            <img
+              src="{{ client_signature_url }}"
+              alt="Client Signature"
+              width="150"
+              height="50"
+            />
+            <div class="signature-note">(Client Signature)</div>
+          </div>
+        </td>
+        {% endif %}
+
+        <!-- <td class = "signature-table">        
+            <div class="signature-container">
+
+                {% if cm_signature_url %}
+                    <img src="{{ cm_signature_url }}" alt="Closing Manager Signature" width="150" height="50">
+                {% else %}
+                    <div class="signature">____________________________</div>
+                {% endif %}
+
+              
+                <div class="signature-note">
+                    (Closing Manager Signature)
+                </div>
+               
+            </div></td> -->
+
+        {% if cm_signature_url %}
+        <td class="signature-table">
+          <div class="signature-container">
+            <img
+              src="{{ cm_signature_url }}"
+              alt="Closing Manager Signature"
+              width="150"
+              height="50"
+            />
+            <div class="signature-note">(Closing Manager Signature)</div>
+          </div>
+        </td>
+        {% endif %}
+
+        <!-- <td class = "signature-table">        
+            <div class="signature-container">
+
+                {% if vp_signature %}
+                    <img src="{{ vp_signature }}" alt="Vice President Signature" width="150" height="50">
+                {% else %}
+                    <div class="signature">____________________________</div>
+                {% endif %}
+
+               
+                <div class="signature-note">
+                    (Vice President Signature)
+                </div>
+               
+            </div></td> -->
+
+        {% if vp_signature %}
+        <td class="signature-table">
+          <div class="signature-container">
+            <img
+              src="{{ vp_signature }}"
+              alt="Vice President Signature"
+              width="150"
+              height="50"
+            />
+            <div class="signature-note">(Vice President Signature)</div>
+          </div>
+        </td>
+        {% endif %}
+
+        <!-- <td class = "signature-table">        
+            <div class="signature-container">
+
+                {% if co_owner_signature %}
+                    <img src="{{ co_owner_signature }}" alt="Co-Owner Signature" width="150" height="50">
+                {% else %}
+                    <div class="signature">____________________________</div>
+                {% endif %}
+                
+               
+                <div class="signature-note">
+                    (Co-Owner Signature)
+                </div>
+               
+            </div></td>  -->
+
+        {% if co_owner_signature %}
+        <td class="signature-table">
+          <div class="signature-container">
+            <img
+              src="{{ co_owner_signature }}"
+              alt="Co-Owner Signature"
+              width="150"
+              height="50"
+            />
+            <div class="signature-note">(Co-Owner Signature)</div>
+          </div>
+        </td>
+        {% endif %}
+
+        <!-- <td class = "signature-table">        
+                <div class="signature-container">
+    
+                    {% if co_owner2_signature %}
+                        <img src="{{ co_owner2_signature }}" alt="Co-Owner Signature" width="150" height="50">
+                    {% else %}
+                        <div class="signature">____________________________</div>
+                    {% endif %}
+                    
+                    <div class="signature-note">
+                        (Co-Owner2 Signature)
+                    </div>
+                  
+                </div></td>  -->
+
+        {% if co_owner2_signature %}
+        <td class="signature-table">
+          <div class="signature-container">
+            <img
+              src="{{ co_owner2_signature }}"
+              alt="Co-Owner2 Signature"
+              width="150"
+              height="50"
+            />
+            <div class="signature-note">(Co-owner2 Signature)</div>
+          </div>
+        </td>
+        {% endif %}
+
+        <!-- <td class = "signature-table">        
+                    <div class="signature-container">
+        
+                        {% if co_owner3_signature %}
+                            <img src="{{ co_owner3_signature }}" alt="Co-Owner Signature" width="150" height="50">
+                        {% else %}
+                            <div class="signature">____________________________</div>
+                        {% endif %}
+                        
+                       
+                        <div class="signature-note">
+                            (Co-Owner3 Signature)
+                        </div>
+                        
+                    </div></td>   -->
+
+        {% if co_owner3_signature %}
+        <td class="signature-table">
+          <div class="signature-container">
+            <img
+              src="{{ co_owner3_signature }}"
+              alt="Client Signature"
+              width="150"
+              height="50"
+            />
+            <div class="signature-note">(Co-Owner3 Signature)</div>
+          </div>
+        </td>
+        {% endif %}
+
+        <!-- <td class = "signature-table">        
+                        <div class="signature-container">
+            
+                            {% if co_owner4_signature %}
+                                <img src="{{ co_owner4_signature }}" alt="Co-Owner Signature" width="150" height="50">
+                            {% else %}
+                                <div class="signature">____________________________</div>
+                            {% endif %}
+                            
+                            <div class="signature-note">
+                                (Co-Owner4 Signature)
+                            </div>
+                          
+                        </div></td>  -->
+
+        {% if co_owner4_signature %}
+        <td class="signature-table">
+          <div class="signature-container">
+            <img
+              src="{{ co_owner4_signature }}"
+              alt="Co-Owner4 Signature"
+              width="150"
+              height="50"
+            />
+            <div class="signature-note">(Co-Owner4 Signature)</div>
+          </div>
+        </td>
+        {% endif %}
+
+        <!-- <td class = "signature-table">        
+                            <div class="signature-container">
+                
+                                {% if co_owner5_signature %}
+                                    <img src="{{ co_owner5_signature }}" alt="Co-Owner Signature" width="150" height="50">
+                                {% else %}
+                                    <div class="signature">____________________________</div>
+                                {% endif %}
+                                
+                                <div class="signature-note">
+                                    (Co-Owner5 Signature)
+                                </div>
+                            </div></td>     -->
+
+        {% if co_owner5_signature %}
+        <td class="signature-table">
+          <div class="signature-container">
+            <img
+              src="{{ co_owner5_signature }}"
+              alt="Co-Owner5 Signature"
+              width="150"
+              height="50"
+            />
+            <div class="signature-note">(Co-Owner5 Signature)</div>
+          </div>
+        </td>
+        {% endif %}
+      </tr>
+    </table>
+  </body>
+</html>

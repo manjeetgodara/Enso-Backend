@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rokkitt:wght@700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Proxima Nova:wght@400&display=swap" />
+    <title>COST SHEET</title>
+    <style>
+        body {
+            font-family: Proxima Nova, sans-serif;
+            margin: 0;
+            padding: 20px 20px 20px 50px;
+            position: relative;
+            width: 21cm; 
+            height: 29.7cm; 
+        }
+        .headers{
+            font-family: Rokkitt, sans-serif;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            
+        }
+        .details {
+            margin-top: 30px; 
+            margin-bottom: 10px;
+        }
+        .details p {
+            margin: 5px 0;
+        }
+        .details p strong {
+            font-weight: bold;
+        }
+        .details p span {
+            margin-left: 10px; 
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+        .apartment-heading {
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        th, td {
+            border:1px solid white;
+
+        }
+        .image-left {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .image-right {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+        .label {
+        color: #0F1828;
+        font-family: "Proxima Nova";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        }
+        .signature-table {
+            border:0px solid white;
+        }
+        .signatures {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .signature-container {
+            text-align: center;
+        }
+
+        .signature-note {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+     
+    <table style="width:100%">
+        <tr>
+          <td><img class="image-left" src="{{ image_url }}" alt="Image Left"></td>
+          <td><div class="title">Booking Form</div></td>
+          <td><img class="image-right" src="{{ image_url }}" alt="Image Right"></td>
+        </tr>
+      </table><br>
+    <table style="font-size: 14px;width: 50%;">
+
+        <tr>
+          <td><strong>Customer Name:</strong></td>
+          <td>{{customer_name}}</td>
+      
+        </tr>
+        <tr>
+          <td><strong>Nationality:</strong></td>
+          <td>{{nationality}}</td>
+      
+        </tr>
+        <tr>
+          <td><strong>PAN:</strong></td>
+          <td>{{pan_no}}</td>
+      
+        </tr>
+        <tr>
+          <td><strong>Aadhaar:</strong></td>
+          <td>{{aadhaar_details}}</td>
+        </tr>
+        <tr>
+          <td><strong>Contact:</strong></td>
+          <td>{{contact_number}}</td>
+        </tr>
+        <tr>
+          <td><strong>Residence Address:</strong></td>
+          <td>{{residence_address}}</td>
+        </tr>
+        <tr>
+          <td><strong>Permanent Address:</strong></td>
+          <td>{{permanent_address}}</td>
+        </tr>
+        <tr>
+          <td><strong>Correspondence Address:</strong></td>
+          <td>{{correspondance_address}}</td>
+        </tr>
+      </table>
+
+    {% if company_name and designation %}  
+    <div class="details">
+        <p><strong>Professional Details </strong></p>
+    </div>
+    <table class = "professional-details" style="width:100%">
+        <tr>
+          <td class = "label">Company Name</td>
+          <td class = "label">Designation</td>
+          <td class = "label">Email Id</td>
+        </tr>
+        <tr>
+          <td>{{company_name}}</td>
+          <td>{{designation}}</td>
+          <td>{{email_id}}</td>
+        </tr>
+        <tr>
+          <td class = "label">Company Address</td>
+          <td class = "label">Telephone </td>
+          <td class = "label">FAX</td>
+        </tr>
+        <tr>
+          <td>{{company_address}}</td>
+          <td>{{telephone_no}}</td>
+          <td>{{fax}}</td>
+        </tr>
+      </table>
+    {% endif %}
+    
+    
+    {% if co_owner1_name %}
+    <div class="details">
+        <p><strong>Co-Owner Details</strong></p>
+
+    </div>  
+    <table class="co-owner1" style="width:100%">
+        <tr>
+            <td class = "label">Co-Owner Name</td>
+            <td class = "label">Nationality</td>
+            <td class = "label">PAN</td>
+        </tr>
+        <tr>
+            <td>{{co_owner1_name}}</td>
+            <td>{{co_owner1_nationality}}</td>
+            <td>{{co_owner1_pan_no}}</td>
+        </tr>
+        
+        <tr>
+            <td class = "label">Contact</td>
+            <td class = "label">Company Name</td>
+            <td class = "label">Designation</td>
+        </tr>
+        <tr>
+            <td>{{co_owner1_mobile_no}}</td>
+            <td>{{co_owner1_company_name}}</td>
+            <td>{{co_owner1_designation}}</td>
+        </tr>
+        
+        <tr>
+            <td class = "label">Email Id</td>
+            <td class = "label">Telephone </td>
+            <td class = "label">FAX</td>
+        </tr>
+        <tr>
+            <td>{{co_owner1_email_id}}</td>
+            <td>{{co_owner1_telephone_no}}</td>
+            <td>{{co_owner1_fax}}</td>
+        </tr>
+        <tr>
+            <td class = "label">Address</td>
+        </tr>
+        <tr>
+            <td>{{co_owner1_company_address}}</td>
+        </tr>
+    </table>
+    {% endif %}
+  
+    {% if co_owner2_name %}
+    <table class="co-owner2" style="width:100%">
+        <tr>
+            <td class = "label">Co-Owner Name</td>
+            <td class = "label">Nationality</td>
+            <td class = "label">PAN</td>
+        </tr>
+        <tr>
+            <td>{{co_owner2_name}}</td>
+            <td>{{co_owner2_nationality}}</td>
+            <td>{{co_owner2_pan_no}}</td>
+        </tr>
+        
+        <tr>
+            <td class = "label">Contact</td>
+            <td class = "label">Company Name</td>
+            <td class = "label">Designation</td>
+        </tr>
+        <tr>
+            <td>{{co_owner2_mobile_no}}</td>
+            <td>{{co_owner2_company_name}}</td>
+            <td>{{co_owner2_designation}}</td>
+        </tr>
+        
+        <tr>
+            <td class = "label">Email Id</td>
+            <td class = "label">Telephone </td>
+            <td class = "label">FAX</td>
+        </tr>
+        <tr>
+            <td>{{co_owner2_email_id}}</td>
+            <td>{{co_owner2_telephone_no}}</td>
+            <td>{{co_owner2_fax}}</td>
+        </tr>
+        <tr>
+            <td class = "label">Address</td>
+        </tr>
+        <tr>
+            <td>{{co_owner2_company_address}}</td>
+        </tr>
+    </table>
+    {% endif %}
+
+    {% if co_owner3_name %}
+    <table class="co-owner3" style="width:100%">
+        <tr>
+            <td class = "label">Co-Owner Name</td>
+            <td class = "label">Nationality</td>
+            <td class = "label">PAN</td>
+        </tr>
+        <tr>
+            <td>{{co_owner3_name}}</td>
+            <td>{{co_owner3_nationality}}</td>
+            <td>{{co_owner3_pan_no}}</td>
+        </tr>
+        
+        <tr>
+            <td class = "label">Contact</td>
+            <td class = "label">Company Name</td>
+            <td class = "label">Designation</td>
+        </tr>
+        <tr>
+            <td>{{co_owner3_mobile_no}}</td>
+            <td>{{co_owner3_company_name}}</td>
+            <td>{{co_owner3_designation}}</td>
+        </tr>
+        
+        <tr>
+            <td class = "label">Email Id</td>
+            <td class = "label">Telephone </td>
+            <td class = "label">FAX</td>
+        </tr>
+        <tr>
+            <td>{{co_owner3_email_id}}</td>
+            <td>{{co_owner3_telephone_no}}</td>
+            <td>{{co_owner3_fax}}</td>
+        </tr>
+        <tr>
+            <td class = "label">Address</td>
+        </tr>
+        <tr>
+            <td>{{co_owner3_company_address}}</td>
+        </tr>
+    </table>
+    {% endif %}
+
+    {% if co_owner4_name %}
+    <table class="co-owner4" style="width:100%">
+        <tr>
+            <td class = "label">Co-Owner Name</td>
+            <td class = "label">Nationality</td>
+            <td class = "label">PAN</td>
+        </tr>
+        <tr>
+            <td>{{co_owner4_name}}</td>
+            <td>{{co_owner4_nationality}}</td>
+            <td>{{co_owner4_pan_no}}</td>
+        </tr>
+        
+        <tr>
+            <td class = "label">Contact</td>
+            <td class = "label">Company Name</td>
+            <td class = "label">Designation</td>
+        </tr>
+        <tr>
+            <td>{{co_owner4_mobile_no}}</td>
+            <td>{{co_owner4_company_name}}</td>
+            <td>{{co_owner4_designation}}</td>
+        </tr>
+        
+        <tr>
+            <td class = "label">Email Id</td>
+            <td class = "label">Telephone </td>
+            <td class = "label">FAX</td>
+        </tr>
+        <tr>
+            <td>{{co_owner4_email_id}}</td>
+            <td>{{co_owner4_telephone_no}}</td>
+            <td>{{co_owner4_fax}}</td>
+        </tr>
+        <tr>
+            <td class = "label">Address</td>
+        </tr>
+        <tr>
+            <td>{{co_owner4_company_address}}</td>
+        </tr>
+    </table>
+    {% endif %}
+
+    {% if co_owner5_name %}
+    <table class="co-owner5" style="width:100%">
+        <tr>
+            <td class = "label">Co-Owner Name</td>
+            <td class = "label">Nationality</td>
+            <td class = "label">PAN</td>
+        </tr>
+        <tr>
+            <td>{{co_owner5_name}}</td>
+            <td>{{co_owner5_nationality}}</td>
+            <td>{{co_owner5_pan_no}}</td>
+        </tr>
+        
+        <tr>
+            <td class = "label">Contact</td>
+            <td class = "label">Company Name</td>
+            <td class = "label">Designation</td>
+        </tr>
+        <tr>
+            <td>{{co_owner5_mobile_no}}</td>
+            <td>{{co_owner5_company_name}}</td>
+            <td>{{co_owner5_designation}}</td>
+        </tr>
+        
+        <tr>
+            <td class = "label">Email Id</td>
+            <td class = "label">Telephone </td>
+            <td class = "label">FAX</td>
+        </tr>
+        <tr>
+            <td>{{co_owner5_email_id}}</td>
+            <td>{{co_owner5_telephone_no}}</td>
+            <td>{{co_owner5_fax}}</td>
+        </tr>
+        <tr>
+            <td class = "label">Address</td>
+        </tr>
+        <tr>
+            <td>{{co_owner5_company_address}}</td>
+        </tr>
+    </table>
+    {% endif %}
+  
+    <div class="details">
+        <p class="apartment-heading headers">Personal Details</p>
+    <table class = "Personal Details" style="width:100%">
+
+        <tr>
+          <td class = "label">Marital Status</td>
+          <td class = "label">Family Configuration</td>
+      
+        </tr>
+        <tr>
+          <td>{{marital_status}}</td>
+          <td>{{family_configuration}}</td>
+        </tr>
+    </table>
+      <div class="details">
+        <p><strong  class="apartment-heading headers">Apartment/Shop Details </strong></p>
+    </div>  
+    <table class = "Apartment/Shop Details"style="width:100%">
+
+        <tr>
+        <td class = "label">Project</td>
+        <td class = "label">Configuration</td>
+        <td class = "label">Tower</td>
+    
+        </tr>
+        <tr>
+        <td>{{project_name}}</td>
+        <td>{{configuration}}</td>
+        <td>{{tower_id}}</td>
+        </tr>
+        <tr>
+        <td class = "label">Floor</td>
+        <td class = "label">Apartment/Shop No.</td>
+        <td class = "label">Deal Amount</td>
+        </tr>
+        <tr>
+        <td>{{floor}}</td>
+        <td>{{apartment_no}}</td>
+        <td>{{deal_amount}}</td>
+        </tr>
+        <tr>
+        <td class = "label">Date Of Booking</td>
+        <td class = "label">Source</td>
+        <td class = "label">Sub Source </td>
+        </tr>
+        <tr>
+        <td>{{date_of_booking}}</td>
+        <td>{{booking_source}}</td>
+        <td>{{sub_source}}</td>
+        </tr>
+        <tr>
+        <td class = "label">Source of Finance</td>    
+        <td class = "label">Closing Manager</td>
+        <!-- <td class = "label">Car Parking</td> -->
+        </tr>
+        <tr>
+        <td>{{source_of_finance}}</td>
+        <td>{{sales_manager_name_id}}</td>
+        <!-- <td>{{car_parking}}</td> -->
+        </tr>
+    </table>
+      
+    <div class="details">
+        <p><strong>Customer Contact Person</strong></p>
+    <table style="width:50%">
+
+        <tr>
+          <td class = "label">Name</td>
+          <td class = "label">Contact</td>
+      
+        </tr>
+        <tr>
+          <td>{{contact_person_name}}</td>
+          <td>{{contact_person_number}}</td>
+        </tr>
+    
+    <!-- Signature Section -->
+    <table class = "signature-table">
+        <tr class = "signature-table">
+            <!-- <td class = "signature-table">
+                   <div class="signature-container">
+    
+                        {% if sh_signature_url %}
+                            <img src="{{ sh_signature_url }}" alt="SH Signature" width="150" height="50">
+                        {% else %}
+                            <div class="signature">____________________________</div>
+                           {% endif %} 
+    
+                  
+                    <div class="signature-note">
+                        (Site Head Signature)
+                    </div>
+                </div>
+            </td> -->
+
+            {% if sh_signature_url %}
+            <td class="signature-table">
+                <div class="signature-container">
+                    <img src="{{ sh_signature_url }}" alt="SH Signature" width="150" height="50">
+                    <div class="signature-note">
+                        (Site Head Signature)
+                    </div>
+                </div>
+            </td>
+            {% endif %}
+
+            <!-- <td class = "signature-table">        
+                <div class="signature-container">
+    
+                    {% if customer_signature_url %}
+                        <img src="{{ customer_signature_url }}" alt="Customer Signature" width="150" height="50">
+                    {% else %}
+                        <div class="signature">____________________________</div> 
+                       {% endif %}
+    
+                   
+                    <div class="signature-note">
+                        (Customer Signature)
+                    </div>
+                </div></td> -->
+
+                {% if customer_signature_url %}
+                <td class="signature-table">
+                    <div class="signature-container">
+                        <img src="{{ customer_signature_url }}" alt="Customer Signature" width="150" height="50">
+                        <div class="signature-note">
+                            (Customer Signature)
+                        </div>
+                    </div>
+                </td>
+                {% endif %}
+    
+    
+              <!-- <td class = "signature-table">        
+                <div class="signature-container">
+    
+                    {% if co_owner1_signature_url %}
+                        <img src="{{ co_owner1_signature_url }}" alt="Co-Owner Signature" width="150" height="50">
+                    {% else %}
+                        <div class="signature">____________________________</div>
+                    {% endif %}
+                    
+                   
+                    <div class="signature-note">
+                        (Co-Owner Signature)
+                    </div>
+                    
+                </div></td>     -->
+
+                {% if co_owner1_signature_url %}
+                <td class="signature-table">
+                    <div class="signature-container">
+                        <img src="{{ co_owner1_signature_url }}" alt="Co-Owner1 Signature" width="150" height="50">
+                        <div class="signature-note">
+                            (Co-Owner Signature)
+                        </div>
+                    </div>
+                </td>
+                {% endif %}
+    
+            
+                <!-- <td class = "signature-table">        
+                    <div class="signature-container">
+        
+                        {% if co_owner2_signature_url %}
+                            <img src="{{ co_owner2_signature_url }}" alt="Co-Owner Signature" width="150" height="50">
+                        {% else %}
+                            <div class="signature">____________________________</div>
+                        {% endif %}
+                        
+                        
+                        <div class="signature-note">
+                            (Co-Owner2 Signature)
+                        </div>
+                       
+                    </div></td>   -->
+
+                    {% if co_owner2_signature_url %}
+                    <td class="signature-table">
+                        <div class="signature-container">
+                            <img src="{{ co_owner2_signature_url }}" alt="Co-Owner2 Signature" width="150" height="50">
+                            <div class="signature-note">
+                                (Co-Owner2 Signature)
+                            </div>
+                        </div>
+                    </td>
+                    {% endif %}
+                
+                    <!-- <td class = "signature-table">        
+                        <div class="signature-container">
+            
+                            {% if co_owner3_signature_url %}
+                                <img src="{{ co_owner3_signature_url }}" alt="Co-Owner Signature" width="150" height="50">
+                            {% else %}
+                                <div class="signature">____________________________</div>
+                            {% endif %}
+                            
+                            
+                            <div class="signature-note">
+                                (Co-Owner3 Signature)
+                            </div>
+                           
+                        </div></td> -->
+                        
+                        {% if co_owner3_signature_url %}
+                        <td class="signature-table">
+                            <div class="signature-container">
+                                <img src="{{ co_owner3_signature_url }}" alt="Co-Owner3 Signature" width="150" height="50">
+                                <div class="signature-note">
+                                    (Co-Owner3 Signature)
+                                </div>
+                            </div>
+                        </td>
+                        {% endif %}
+
+                        <!-- <td class = "signature-table">        
+                            <div class="signature-container">
+                
+                                {% if co_owner4_signature_url %}
+                                    <img src="{{ co_owner4_signature_url }}" alt="Co-Owner Signature" width="150" height="50">
+                                {% else %}
+                                    <div class="signature">____________________________</div>
+                                {% endif %}
+                                
+                             
+                                <div class="signature-note">
+                                    (Co-Owner4 Signature)
+                                </div>
+                               
+                            </div></td>     -->
+
+                            {% if co_owner4_signature_url %}
+                            <td class="signature-table">
+                                <div class="signature-container">
+                                    <img src="{{ co_owner4_signature_url }}" alt="Co-Owner4 Signature" width="150" height="50">
+                                    <div class="signature-note">
+                                        (Co-Owner4 Signature)
+                                    </div>
+                                </div>
+                            </td>
+                            {% endif %}
+                            
+                            <!-- <td class = "signature-table">        
+                                <div class="signature-container">
+                    
+                                    {% if co_owner5_signature_url %}
+                                        <img src="{{ co_owner5_signature_url }}" alt="Co-Owner Signature" width="150" height="50">
+                                    {% else %}
+                                        <div class="signature">____________________________</div>
+                                    {% endif %}
+                                    
+                                    <div class="signature-note">
+                                        (Co-Owner5 Signature)
+                                    </div>
+                                   
+                                </div></td>  -->
+
+                                {% if co_owner5_signature_url %}
+                                <td class="signature-table">
+                                    <div class="signature-container">
+                                        <img src="{{ co_owner5_signature_url }}" alt="Co-Owner5 Signature" width="150" height="50">
+                                        <div class="signature-note">
+                                            (Co-Owner5 Signature)
+                                        </div>
+                                    </div>
+                                </td>
+                                {% endif %}    
+
+                
+          </tr>
+        </table>
+
+
+    
+</body>
+</html>
